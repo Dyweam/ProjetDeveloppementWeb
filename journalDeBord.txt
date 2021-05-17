@@ -1,0 +1,4 @@
+17 Mai 2021:
+- Création du repository GitHub 
+- Installation de python & de pipenv
+- Récupération de la base de données ("chinook.db")
