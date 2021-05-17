@@ -2,3 +2,6 @@
 - Création du repository GitHub 
 - Installation de python & de pipenv
 - Récupération de la base de données ("chinook.db")
+- Installation de Flask via pipenv
+- Installation de peewee via pipenv
+- Utilisation de bootstrap dans le template index.html
