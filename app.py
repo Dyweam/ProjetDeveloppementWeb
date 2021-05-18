@@ -1,6 +1,24 @@
 from flask import Flask, render_template
 app = Flask(__name__)
 
+from peewee import *
+# SQLite database using WAL journal mode and 64MB cache.
+sqlite_db = SqliteDatabase('chinook.db', pragmas={'journal_mode': 'wal','cache_size': -1024 * 64})
+
+class BaseModel(Model):
+    class Meta:
+        database = sqlite_db
+
+class Genres(BaseModel):
+    Genreid = AutoField()
+    Name = CharField()
+    class Meta:
+        table_name = 'genres'
+
+query = Genres.select(Genres.Genreid, Genres.Name)
+for genre in query:
+    print(genre.Name)
+
 @app.route('/')
 def index():
     return render_template('pages/index.html')
