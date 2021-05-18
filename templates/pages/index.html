@@ -1,123 +1,40 @@
-<!doctype html>
-<html>
-
-<head>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Chinook</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{url_for('index')}}">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('artists')}}">Artistes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('albums')}}">Albums</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('genre')}}">Genre</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('clients')}}">Clients</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('commands')}}">Commandes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('employees')}}">Employés</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-          <h1 class="display-4">Chinook</h1>
-          <p class="lead">Retrouvez tout vos artistes préférés sur ce site web.</p>
-      </div>
-  </div>
+{% extends "pages/layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
   <div class="container">
-      <h1 class="display-4">Display 4</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic quod eius ratione consequatur temporibus
-          molestiae, dolore consequuntur, odio quas, accusantium natus error eos. Fugit culpa eum odit accusantium
-          necessitatibus ad!
-          Nisi unde dignissimos perferendis, sit necessitatibus a. Excepturi eveniet dolorum quam hic aperiam vero
-          doloribus enim dolores aliquam magni, iste nobis praesentium perspiciatis, fuga delectus quo? Maxime
-          obcaecati voluptatem autem.
-          Porro, obcaecati! Laudantium iusto quibusdam repudiandae atque, ratione, illum minima aliquid quisquam ullam
-          laboriosam magnam modi dolores eius dolor. Nostrum tenetur iusto asperiores provident! Praesentium impedit
-          obcaecati repellendus voluptatibus laborum?
-          Eligendi laudantium ducimus temporibus, numquam nesciunt repudiandae veniam cupiditate. Molestiae dolores
-          odio minus totam in voluptates dicta soluta aperiam dolor magni praesentium, at saepe ipsum ea velit quam
-          quia! Sed?
-          Vel commodi cum laborum quam laudantium earum facere beatae perspiciatis harum, accusamus corporis, in
-          provident blanditiis molestiae doloremque repellendus possimus maiores, natus id enim voluptate temporibus
-          sint ratione quisquam! Sapiente?
-          Culpa quod nemo ipsum odio aliquam eos? Nulla ex ab vitae officiis consectetur a, voluptas voluptate
-          aspernatur corporis consequuntur qui commodi consequatur cupiditate cumque aliquid delectus inventore
-          explicabo perferendis expedita.
-          Accusantium eos quia dolorum rem deleniti alias asperiores quos necessitatibus aliquid, optio magni,
-          explicabo minus aspernatur quisquam. Debitis saepe qui reiciendis omnis dolore, architecto repudiandae
-          labore eaque officiis pariatur quis!
-          Facere officiis aliquid laudantium dignissimos excepturi in labore, alias quibusdam sed cumque, fuga magni
-          quis ea accusantium quisquam! Beatae ipsa magnam fugit consequuntur provident iste necessitatibus minus
-          mollitia sed incidunt.
-      </p>
+      <h1 class="display-4">Chinook</h1>
+      <p class="lead">Retrouvez tout vos artistes préférés sur ce site web.</p>
   </div>
-<br>
-<footer class="bg-light text-center text-lg-start">
-    <!-- Grid container -->
-    <div class="container p-4">
-      <!--Grid row-->
-      <div class="row">
-        <!--Grid column-->
-        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Footer text</h5>
-  
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-            molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
-            aliquam voluptatem veniam, est atque cumque eum delectus sint!
-          </p>
-        </div>
-        <!--Grid column-->
-  
-        <!--Grid column-->
-        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Footer text</h5>
-  
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-            molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
-            aliquam voluptatem veniam, est atque cumque eum delectus sint!
-          </p>
-        </div>
-        <!--Grid column-->
-      </div>
-      <!--Grid row-->
-    </div>
-    <!-- Grid container -->
-  
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2020 Copyright:
-      <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-    </div>
-    <!-- Copyright -->
-  </footer>
-</body>
-</html>
+</div>
+<div class="container">
+  <h1 class="display-4">Display 4</h1>
+  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic quod eius ratione consequatur temporibus
+      molestiae, dolore consequuntur, odio quas, accusantium natus error eos. Fugit culpa eum odit accusantium
+      necessitatibus ad!
+      Nisi unde dignissimos perferendis, sit necessitatibus a. Excepturi eveniet dolorum quam hic aperiam vero
+      doloribus enim dolores aliquam magni, iste nobis praesentium perspiciatis, fuga delectus quo? Maxime
+      obcaecati voluptatem autem.
+      Porro, obcaecati! Laudantium iusto quibusdam repudiandae atque, ratione, illum minima aliquid quisquam ullam
+      laboriosam magnam modi dolores eius dolor. Nostrum tenetur iusto asperiores provident! Praesentium impedit
+      obcaecati repellendus voluptatibus laborum?
+      Eligendi laudantium ducimus temporibus, numquam nesciunt repudiandae veniam cupiditate. Molestiae dolores
+      odio minus totam in voluptates dicta soluta aperiam dolor magni praesentium, at saepe ipsum ea velit quam
+      quia! Sed?
+      Vel commodi cum laborum quam laudantium earum facere beatae perspiciatis harum, accusamus corporis, in
+      provident blanditiis molestiae doloremque repellendus possimus maiores, natus id enim voluptate temporibus
+      sint ratione quisquam! Sapiente?
+      Culpa quod nemo ipsum odio aliquam eos? Nulla ex ab vitae officiis consectetur a, voluptas voluptate
+      aspernatur corporis consequuntur qui commodi consequatur cupiditate cumque aliquid delectus inventore
+      explicabo perferendis expedita.
+      Accusantium eos quia dolorum rem deleniti alias asperiores quos necessitatibus aliquid, optio magni,
+      explicabo minus aspernatur quisquam. Debitis saepe qui reiciendis omnis dolore, architecto repudiandae
+      labore eaque officiis pariatur quis!
+      Facere officiis aliquid laudantium dignissimos excepturi in labore, alias quibusdam sed cumque, fuga magni
+      quis ea accusantium quisquam! Beatae ipsa magnam fugit consequuntur provident iste necessitatibus minus
+      mollitia sed incidunt.
+  </p>
+</div>
+{% endblock %}
