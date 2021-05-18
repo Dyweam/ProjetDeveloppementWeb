@@ -10,12 +10,105 @@ class BaseModel(Model):
         database = sqlite_db
 
 class Genres(BaseModel):
-    Genreid = AutoField()
+    GenreId = AutoField()
     Name = CharField()
     class Meta:
         table_name = 'genres'
 
-query = Genres.select(Genres.Genreid, Genres.Name)
+class MediaTypes(BaseModel):
+    MediaTypesId = AutoField()
+    Name = CharField()
+    class Meta:
+        table_name = 'media_types'
+
+class Playlists(BaseModel):
+    PlaylistId = AutoField()
+    Name = CharField()
+    class Meta:
+        table_name = 'playlists'
+
+class PlaylistTrack(BaseModel):
+    PlaylistId = IntegerField()
+    TrackId = IntegerField()
+    class Meta:
+        table_name = 'playlist_track'
+
+class Tracks(BaseModel):
+    TrackId = AutoField()
+    Name = CharField()
+    AlbumId = IntegerField()
+    MediaTypeId = IntegerField()
+    GenreId = IntegerField()
+    Composer = CharField()
+    Milliseconds = IntegerField()
+    Bytes = IntegerField()
+    UnitPrice = MoneyField()
+        class Meta:
+        table_name = 'tracks'
+
+class Artists(BaseModel):
+    ArtistId = AutoField()
+    Name = CharField()
+    class Meta:
+        table_name = 'artists'
+
+class Invoices(BaseModel):
+    InvoiceId = AutoField()
+    CustomerId = IntegerField()
+    InvoiceDate = DateTimeField()
+    BillingAddress = CharField()
+    BillingCity = CharField()
+    # 4 Classes Supplémentaires
+    class Meta:
+        table_name = 'invoices'
+
+class InvoicesItems(BaseModel):
+    InvoiceItemId = AutoField()
+    InvoiceId = IntegerField()
+    TrackId = IntegerField()
+    UnitPrice = MoneyField()
+    Quantity = IntegerField()
+    class Meta:
+        table_name = 'invoices_items'
+
+class Albums(BaseModel):
+    AlbumId = AutoField()
+    Title = CharField()
+    ArtistId = IntegerField()
+    class Meta:
+        table_name = 'albums'
+
+class Customers(BaseModel):
+    CustomerId = AutoField()
+    FirstName = CharField()
+    LastName = CharField()
+    Company = CharField()
+    Address = CharField()
+    City = CharField()
+    State = CharField()
+    Country = CharField()
+    PostalCode = CharField()
+    Phone = CharField()
+    Fax = CharField()
+    Email = CharField()
+    SupportRepId = IntegerField()
+    class Meta:
+        table_name = 'customers'
+
+class Employees(BaseModel):
+    EmployeesId = AutoField()
+    LastName = CharField()
+    FirstName = CharField()
+    Title = CharField()
+    ReportsTo = IntegerField()
+    BirthDate = DateTimeField()
+    HireDate = DateTimeField()
+    Address = CharField()
+    # 7 Classes Supplémentaires
+    class Meta:
+        table_name = 'invoices'
+
+query = Genres.select(Genres.GenreId, Genres.Name)
 for genre in query:
     print(genre.Name)
 
