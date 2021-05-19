@@ -42,8 +42,8 @@ class Tracks(BaseModel):
     Composer = CharField()
     Milliseconds = IntegerField()
     Bytes = IntegerField()
-    UnitPrice = MoneyField()
-        class Meta:
+    UnitPrice = DecimalField()
+    class Meta:
         table_name = 'tracks'
 
 class Artists(BaseModel):
@@ -58,7 +58,10 @@ class Invoices(BaseModel):
     InvoiceDate = DateTimeField()
     BillingAddress = CharField()
     BillingCity = CharField()
-    # 4 Classes Supplémentaires
+    BillingState = CharField()
+    BillingCountry = CharField()
+    BillingPostalCode = CharField()
+    Total = DecimalField()
     class Meta:
         table_name = 'invoices'
 
@@ -66,7 +69,7 @@ class InvoicesItems(BaseModel):
     InvoiceItemId = AutoField()
     InvoiceId = IntegerField()
     TrackId = IntegerField()
-    UnitPrice = MoneyField()
+    UnitPrice = DecimalField()
     Quantity = IntegerField()
     class Meta:
         table_name = 'invoices_items'
@@ -104,7 +107,13 @@ class Employees(BaseModel):
     BirthDate = DateTimeField()
     HireDate = DateTimeField()
     Address = CharField()
-    # 7 Classes Supplémentaires
+    City = CharField()
+    State = CharField()
+    Country = CharField()
+    PostalCode = CharField()
+    Phone = CharField()
+    Fax = CharField()
+    Email = CharField()
     class Meta:
         table_name = 'invoices'
 
