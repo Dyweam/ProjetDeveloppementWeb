@@ -72,7 +72,7 @@ class InvoicesItems(BaseModel):
     UnitPrice = DecimalField()
     Quantity = IntegerField()
     class Meta:
-        table_name = 'invoices_items'
+        table_name = 'invoice_items'
 
 class Albums(BaseModel):
     AlbumId = AutoField()
@@ -117,33 +117,148 @@ class Employees(BaseModel):
     class Meta:
         table_name = 'invoices'
 
-query = Genres.select(Genres.GenreId, Genres.Name)
-for genre in query:
-    print(genre.Name)
+# query = Genres.select(Genres.GenreId, Genres.Name)
+# for genre in query:
+#     print(genre.Name)
 
 @app.route('/')
 def index():
-    return render_template('pages/index.html')
+    artistsQuery = Artists.select(Artists.ArtistId, Artists.Name).limit(5)
+    albumsQuery = Albums.select(Albums.AlbumId, Albums.Title).limit(5)
+    genresQuery = Genres.select(Genres.GenreId, Genres.Name).limit(5)
+
+    artists = []
+    for artist in artistsQuery:
+        artists.append([artist, artist.Name])
+
+    albums = []
+    for album in albumsQuery:
+        albums.append([album, album.Title])
+
+    genres = []
+    for genre in genresQuery:
+        genres.append([genre, genre.Name])
+
+    return render_template('pages/index.html', artists = artists, albums = albums, genres = genres)
+
+#####
 
 @app.route('/artists')
 def artists():
-    return render_template('pages/artists.html')
+    artistsQuery = Artists.select(Artists.ArtistId, Artists.Name)
+    artists = []
+    for artist in artistsQuery:
+        artists.append([artist, artist.Name])
+    return render_template('pages/artists.html', artists = artists)
+
+@app.route('/artist/<id>', methods=['GET'])
+def artist(id):
+    artistsQuery = Artists.select(Artists.ArtistId, Artists.Name).where(Artists.ArtistId == id)
+    artists = []
+    for artist in artistsQuery:
+        artists.append([artist, artist.Name])
+
+    albumsQuery = Albums.select(Albums.AlbumId, Albums.Title).where(Albums.ArtistId == id)
+    albums = []
+    for album in albumsQuery:
+        albums.append([album, album.Title])
+
+    return render_template('pages/artist.html', artist = artists[0], albums = albums)
+
+#####
 
 @app.route('/albums')
 def albums():
-    return render_template('pages/albums.html')
+    albumsQuery = Albums.select(Albums.AlbumId, Albums.Title)
+    albums = []
+    for album in albumsQuery:
+        albums.append([album, album.Title])
+    return render_template('pages/albums.html', albums = albums)
 
-@app.route('/genre')
-def genre():
-    return render_template('pages/genre.html')
+@app.route('/album/<id>', methods=['GET'])
+def album(id):
+    albumsQuery = Albums.select(Albums.AlbumId, Albums.Title).where(Albums.AlbumId == id)
+    albums = []
+    for album in albumsQuery:
+        albums.append([album, album.Title])
+
+    tracksQuery = Tracks.select(Tracks.TrackId, Tracks.Name).where(Tracks.AlbumId == id)
+    tracks = []
+    for track in tracksQuery:
+        tracks.append([track, track.Name])
+
+    return render_template('pages/album.html', album = albums[0], tracks = tracks)
+
+#####
+
+@app.route('/genres')
+def genres():
+    genresQuery = Genres.select(Genres.GenreId, Genres.Name).limit(5)
+    genres = []
+    for genre in genresQuery:
+        genres.append([genre, genre.Name])
+    return render_template('pages/genres.html', genres = genres)
+
+@app.route('/genre/<id>', methods=['GET'])
+def genre(id):
+    genresQuery = Genres.select(Genres.GenreId, Genres.Name).where(Genres.GenreId == id)
+    genres = []
+    for genre in genresQuery:
+        genres.append([genre, genre.Name])
+
+    tracksQuery = Tracks.select(Tracks.TrackId, Tracks.Name).where(Tracks.GenreId == id)
+    tracks = []
+    for track in tracksQuery:
+        tracks.append([track, track.Name])
+    return render_template('pages/genre.html', genre = genres[0], tracks = tracks)
+
+#####
 
 @app.route('/clients')
 def clients():
-    return render_template('pages/clients.html')
+    clientsQuery = Customers.select(Customers.CustomerId, Customers.FirstName, Customers.LastName)
+    clients = []
+    for client in clientsQuery:
+        clients.append([client, client.FirstName, client.LastName])
+    return render_template('pages/clients.html', clients = clients)
 
-@app.route('/commands')
-def commands():
-    return render_template('pages/commands.html')
+@app.route('/client/<id>', methods=['GET'])
+def client(id):
+    clientsQuery = Customers.select(Customers.CustomerId, Customers.FirstName, Customers.LastName).where(Customers.CustomerId == id)
+    clients = []
+    for client in clientsQuery:
+        clients.append([client, client.FirstName, client.LastName])
+
+    invoicesQuery = Invoices.select(Invoices.InvoiceId, Invoices.Total).where(Invoices.CustomerId == id)
+    invoices = []
+    for invoice in invoicesQuery:
+        invoices.append([invoice, invoice.Total])
+    return render_template('pages/client.html', client = clients[0], invoices = invoices)
+
+#####
+
+@app.route('/invoices')
+def invoices():
+    invoicesQuery = Invoices.select(Invoices.InvoiceId, Invoices.Total, Invoices.InvoiceDate)
+    invoices = []
+    for invoice in invoicesQuery:
+        invoices.append([invoice, invoice.Total, invoice.InvoiceDate])
+    return render_template('pages/invoices.html', invoices = invoices)
+
+@app.route('/invoice/<id>', methods=['GET'])
+def invoice(id):
+    invoicesQuery = Invoices.select(Invoices.InvoiceId, Invoices.Total, Invoices.InvoiceDate).where(Invoices.InvoiceId == id)
+    invoices = []
+    for invoice in invoicesQuery:
+        invoices.append([invoice, invoice.Total, invoice.InvoiceDate])
+
+    invoiceItemsQuery = InvoicesItems.select(InvoicesItems.InvoiceItemId, InvoicesItems.TrackId, InvoicesItems.UnitPrice, InvoicesItems.Quantity).where(InvoicesItems.InvoiceItemId == id)
+    invoiceItems = []
+    for invoiceItem in invoiceItemsQuery:
+        invoiceItems.append([invoiceItem, invoiceItem.TrackId, invoiceItem.UnitPrice, invoiceItem.Quantity])
+    return render_template('pages/invoice.html', invoice = invoices[0], invoiceItems = invoiceItems)
+
+#####
 
 @app.route('/employees')
 def employees():

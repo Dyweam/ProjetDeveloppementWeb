@@ -3,88 +3,55 @@
 {{ super() }}
 {% endblock %}
 {% block content %}
+
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-      <h1 class="display-4">Chinook</h1>
-      <p class="lead">Retrouvez tout vos artistes préférés sur ce site web.</p>
+    <h1 class="display-4">Chinook</h1>
+    <p class="lead">Retrouvez tout vos artistes préférés sur ce site web.</p>
   </div>
 </div>
-<div class="container">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Chinook</h1>
-      <p class="lead">Retrouvez tout vos artistes préférés sur ce site web.</p>
-    </div>
-  </div>
-  <div class="container" style="display: flex; flex-direction: column;">
-    <h1 class="display-4">Les artistes</h1>
-    <ol class="list-group list-group-numbered" style="margin: 10px">
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Subheading</div>
-          Cras justo odio
-        </div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Subheading</div>
-          Cras justo odio
-        </div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Subheading</div>
-          Cras justo odio
-        </div>
-      </li>
-    </ol>
-    <a href="/artistes" class="btn btn-secondary btn-lg" style="margin: 10px 10px 10px auto">Liste complète</a>
-    
-    <h1 class="display-4">Les albums</h1>
-    <ol class="list-group list-group-numbered" style="margin: 10px">
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Subheading</div>
-          Cras justo odio
-        </div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Subheading</div>
-          Cras justo odio
-        </div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Subheading</div>
-          Cras justo odio
-        </div>
-      </li>
-    </ol>
-    <a href="/albums" class="btn btn-secondary btn-lg" style="margin: 10px 10px 10px auto">Liste complète</a>
+<div class="container" style="display: flex; flex-direction: column;">
+  <h1 class="display-4">Les artistes</h1>
+  <ol class="list-group list-group-numbered" style="margin: 10px">
 
-    <h1 class="display-4">Les genres</h1>
-    <ol class="list-group list-group-numbered" style="margin: 10px">
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Subheading</div>
-          Cras justo odio
-        </div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Subheading</div>
-          Cras justo odio
-        </div>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold">Subheading</div>
-          Cras justo odio
-        </div>
-      </li>
-    </ol>
-    <a href="/genres" class="btn btn-secondary btn-lg" style="margin: 10px 10px 10px auto">Liste complète</a>
-  </div>
-</div>
-{% endblock %}
+    {% for artist in artists %}
+    <li class="list-group-item d-flex justify-content-between align-items-start" style="display: flex;">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">{{ artist[1] }}</div>
+      </div>
+
+      <a href="/artist/{{ artist[0] }}" class="btn btn-secondary btn-lg" style="margin: 5px 5px 5px auto"> + </a>
+    </li>
+    {% endfor %}
+  </ol>
+  <a href="/artists" class="btn btn-secondary btn-lg" style="margin: 10px 10px 10px auto">Liste complète</a>
+
+  <h1 class="display-4">Les albums</h1>
+  <ol class="list-group list-group-numbered" style="margin: 10px">
+    {% for album in albums %}
+    <li class="list-group-item d-flex justify-content-between align-items-start" style="display: flex;">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">{{ album[1] }}</div>
+      </div>
+
+      <a href="/album/{{ album[0] }}" class="btn btn-secondary btn-lg" style="margin: 5px 5px 5px auto"> + </a>
+    </li>
+    {% endfor %}
+  </ol>
+  <a href="/albums" class="btn btn-secondary btn-lg" style="margin: 10px 10px 10px auto">Liste complète</a>
+
+  <h1 class="display-4">Les genres</h1>
+  <ol class="list-group list-group-numbered" style="margin: 10px">
+    {% for genre in genres %}
+    <li class="list-group-item d-flex justify-content-between align-items-start" style="display: flex;">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">{{ genre[1] }}</div>
+      </div>
+
+      <a href="/genre/{{ genre[0] }}" class="btn btn-secondary btn-lg" style="margin: 5px 5px 5px auto"> + </a>
+    </li>
+    {% endfor %}
+  </ol>
+  <a href="/genres" class="btn btn-secondary btn-lg" style="margin: 10px 10px 10px auto">Liste complète</a>
+
+  {% endblock %}
